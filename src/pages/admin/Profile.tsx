@@ -1,7 +1,8 @@
 import axios from "axios";
-import Navigation from "../../components/staff/Navigation";
+import Navigation from "../../components/admin/Navigation";
 import { useEffect, useState } from "react";
 import Man from "../../assets/Man.jpg";
+import EditUser from "../../components/admin/profile/EditUser";
 
 interface user {
   _id: string;
@@ -66,6 +67,8 @@ const defaultUser: user = {
 };
 const Profile = () => {
   const [user, setUser] = useState<user>(defaultUser);
+  const [editForm, setEditForm] = useState(false);
+  const [userId, setUserId] = useState("");
 
   const getProfileInfo = async () => {
     const user = localStorage.getItem("user");
@@ -74,6 +77,7 @@ const Profile = () => {
       const currentUser = JSON.parse(user);
 
       if (currentUser._id) {
+        setUserId(currentUser._id);
         try {
           let url = `http://localhost:8080/api/users/${currentUser._id}`;
 
@@ -87,6 +91,16 @@ const Profile = () => {
         }
       }
     }
+  };
+
+  const formatDateOfBirth = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(date);
   };
 
   useEffect(() => {
@@ -115,7 +129,10 @@ const Profile = () => {
                   #{user._id}
                 </p>
               </div>
-              <div className="px-4 py-2 rounded-xl bg-gradient-to-tr from-[#466600] to-[#699900] cursor-pointer ">
+              <div
+                className="px-4 py-2 rounded-xl bg-gradient-to-tr from-[#466600] to-[#699900] cursor-pointer"
+                onClick={() => setEditForm(true)}
+              >
                 <p className="text-xs font-normal text-white">Edit Profile</p>
               </div>
             </div>
@@ -154,7 +171,7 @@ const Profile = () => {
             <div className="w-full flex flex-row items-center justify-between">
               <p className="text-xs font-normal">Date of Birth:</p>
               <p className="text-xs font-normal text-[#6E6E6E]">
-                {user.personalInfo.dateOfBirth}
+                {formatDateOfBirth(user.personalInfo.dateOfBirth)}
               </p>
             </div>
             <div className="w-full flex flex-row items-center justify-between">
@@ -280,6 +297,15 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      {editForm && (
+        <EditUser
+          userId={userId}
+          onClose={() => {
+            setEditForm(false);
+            getProfileInfo();
+          }}
+        />
+      )}
     </>
   );
 };
