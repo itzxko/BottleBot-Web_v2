@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navigation from "../../components/staff/Navigation";
+import Navigation from "../../components/admin/Navigation";
 import { useRewards } from "../../contexts/RewardsProvider";
 import {
   RiAddLine,
@@ -200,6 +200,21 @@ const Redeem = () => {
                               }}
                             >
                               <RiEdit2Line size={16} color="white" />
+                            </div>
+                          ) : null}
+                          {reward.archiveDate === null ? (
+                            <div
+                              className="p-2 rounded-full bg-[#EDEDED]/10 cursor-pointer"
+                              onClick={() => archiveReward(reward._id)}
+                            >
+                              <RiArchiveLine size={16} color="white" />
+                            </div>
+                          ) : reward.archiveDate !== null ? (
+                            <div
+                              className="p-2 rounded-full bg-[#EDEDED]/10 cursor-pointer"
+                              onClick={() => unarchiveReward(reward)}
+                            >
+                              <RiInboxUnarchiveLine size={16} color="white" />
                             </div>
                           ) : null}
                         </div>

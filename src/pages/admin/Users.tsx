@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import Navigation from "../../components/staff/Navigation";
+import Navigation from "../../components/admin/Navigation";
 import { useUsers } from "../../contexts/UsersProvider";
 import {
   RiAddLine,
   RiArchiveLine,
   RiDeleteBin4Line,
   RiEdit2Line,
-  RiFolder6Line,
   RiInboxUnarchiveLine,
   RiXrpLine,
 } from "react-icons/ri";
@@ -15,7 +14,6 @@ import axios from "axios";
 import Notification from "../../components/Notification";
 import AddForm from "../../components/admin/users/AddForm";
 import EditForm from "../../components/admin/users/EditForm";
-import ViewForm from "../../components/staff/users/ViewForm";
 
 const Users = () => {
   const { users, getUsers, pages } = useUsers();
@@ -24,8 +22,9 @@ const Users = () => {
   const [limit, setLimit] = useState(4);
   const [status, setStatus] = useState("active");
   const [addForm, setAddForm] = useState(false);
-  const [viewForm, setViewForm] = useState(false);
+  const [editForm, setEditForm] = useState(false);
   const [userId, setUserId] = useState("");
+  const [currentUserId, setCurrentUserId] = useState("");
 
   //notif
   const [notif, setNotif] = useState(false);
@@ -35,6 +34,22 @@ const Users = () => {
   useEffect(() => {
     getUsers(userName, page, limit, status);
   }, [userName, page, status]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = () => {
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      const currentUser = JSON.parse(user);
+
+      if (currentUser) {
+        setCurrentUserId(currentUser._id);
+      }
+    }
+  };
 
   const toggleStatus = () => {
     setPage(1);
@@ -156,11 +171,27 @@ const Users = () => {
                         <div
                           className="p-2 rounded-full bg-[#EDEDED] cursor-pointer"
                           onClick={() => {
-                            setViewForm(true);
+                            setEditForm(true);
                             setUserId(user._id);
                           }}
                         >
-                          <RiFolder6Line size={16} color="black" />
+                          <RiEdit2Line size={16} color="black" />
+                        </div>
+                      ) : null}
+                      {currentUserId !== user._id &&
+                      user.archiveDate === null ? (
+                        <div
+                          className="p-2 rounded-full bg-[#EDEDED] cursor-pointer"
+                          onClick={() => archiveUser(user._id)}
+                        >
+                          <RiArchiveLine size={16} color="black" />
+                        </div>
+                      ) : user.archiveDate !== null ? (
+                        <div
+                          className="p-2 rounded-full bg-[#EDEDED] cursor-pointer"
+                          onClick={() => unarchiveUser(user)}
+                        >
+                          <RiInboxUnarchiveLine size={16} color="black" />
                         </div>
                       ) : null}
                     </div>
@@ -222,11 +253,11 @@ const Users = () => {
           }}
         />
       )}
-      {viewForm && (
-        <ViewForm
+      {editForm && (
+        <EditForm
           userId={userId}
           onClose={() => {
-            setViewForm(false);
+            setEditForm(false);
             getUsers(userName, page, limit, status);
           }}
         />

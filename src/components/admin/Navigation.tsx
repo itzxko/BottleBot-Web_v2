@@ -55,7 +55,7 @@ const Navigation = () => {
   }, [location.pathname]);
 
   return (
-    <div className="fixed top-0 left-0 w-full flex items-center justify-center px-4 font-DM bg-[#EDEDED]">
+    <div className="fixed top-0 left-0 w-full flex items-center justify-center px-4 font-DM  z-10">
       <div className="w-full lg:w-3/6 flex items-center justify-between py-4">
         {/* logo */}
         <div
@@ -100,29 +100,50 @@ const Navigation = () => {
               </div>
             )}
             {activeRoute === "redeem" ? (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/redeem")}
+              >
                 <i className="ri-shopping-bag-fill text-md text-[#050301]"></i>
               </div>
             ) : (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/redeem")}
+              >
                 <i className="ri-shopping-bag-line text-md text-[#6E6E6E]"></i>
               </div>
             )}
             {activeRoute === "history" ? (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate("/admin/history");
+                  setActiveRoute("history");
+                }}
+              >
                 <i className="ri-calendar-fill text-md text-[#050301]"></i>
               </div>
             ) : (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/history")}
+              >
                 <i className="ri-calendar-line text-md text-[#6E6E6E]"></i>
               </div>
             )}
             {activeRoute === "users" ? (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/users")}
+              >
                 <i className="ri-user-smile-fill text-md text-[#050301]"></i>
               </div>
             ) : (
-              <div className="cursor-pointer">
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/users")}
+              >
                 <i className="ri-user-smile-line text-md text-[#6E6E6E]"></i>
               </div>
             )}
@@ -173,9 +194,25 @@ const Navigation = () => {
             >
               Monitor
             </p>
-            <p className="text-xs font-normal">Redeem</p>
+            <p
+              className="text-xs font-normal"
+              onClick={() => navigate("/admin/redeem")}
+            >
+              Redeem
+            </p>
+            <p
+              className="text-xs font-normal"
+              onClick={() => navigate("/admin/history")}
+            >
+              History
+            </p>
             <p className="text-xs font-normal">History</p>
-            <p className="text-xs font-normal">Users</p>
+            <p
+              className="text-xs font-normal"
+              onClick={() => navigate("/admin/users")}
+            >
+              Users
+            </p>
             <p
               className="text-xs font-normal"
               onClick={() => navigate("/admin/profile")}

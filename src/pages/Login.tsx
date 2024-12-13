@@ -88,6 +88,7 @@ const Login = () => {
                     className="text-xs font-normal outline-none w-full bg-[#EDEDED] "
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    placeholder="enter username"
                   />
                 </div>
               </div>
@@ -100,6 +101,7 @@ const Login = () => {
                     type={pVisible ? "text" : "password"}
                     className="text-xs font-normal outline-none w-full bg-[#EDEDED] no-eye"
                     value={password}
+                    placeholder="enter password"
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   {password &&

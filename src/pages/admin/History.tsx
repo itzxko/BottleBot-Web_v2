@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navigation from "../../components/staff/Navigation";
+import Navigation from "../../components/admin/Navigation";
 import {
   RiAddLine,
   RiArchiveLine,
@@ -242,6 +242,25 @@ const History = () => {
                             <RiEdit2Line size={16} color="black" />
                           </div>
                         ) : null}
+                        {rewardHistory.archiveDate === null ? (
+                          <div
+                            className="p-2 rounded-full bg-black/10 cursor-pointer"
+                            onClick={() =>
+                              archiveRewardHistory(rewardHistory._id)
+                            }
+                          >
+                            <RiArchiveLine size={16} color="black" />
+                          </div>
+                        ) : rewardHistory.archiveDate !== null ? (
+                          <div
+                            className="p-2 rounded-full bg-black/10 cursor-pointer"
+                            onClick={() =>
+                              unarchiveRewardHistory(rewardHistory)
+                            }
+                          >
+                            <RiInboxUnarchiveLine size={16} color="black" />
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                     <div className="w-full flex flex-col items-start justify-center">
@@ -332,6 +351,9 @@ const History = () => {
                 all disposals history
               </p>
             </div>
+            <div className="p-2 rounded-full bg-[#050301] cursor-pointer">
+              <RiAddLine size={16} color="white" />
+            </div>
           </div>
           <div className="w-full flex flex-col items-center justify-center space-y-2">
             {pointsHistory.length > 0 ? (
@@ -347,7 +369,30 @@ const History = () => {
                         alt=""
                         className="w-[80px] h-[80px] rounded-full"
                       />
-                      <div className="flex flex-row justify-center items-center space-x-2"></div>
+                      <div className="flex flex-row justify-center items-center space-x-2">
+                        {pointHistory.archiveDate === null ? (
+                          <div className="p-2 rounded-full bg-black/10 cursor-pointer">
+                            <RiEdit2Line size={16} color="black" />
+                          </div>
+                        ) : null}
+                        {pointHistory.archiveDate === null ? (
+                          <div
+                            className="p-2 rounded-full bg-black/10 cursor-pointer"
+                            onClick={() =>
+                              archivePointHistory(pointHistory._id)
+                            }
+                          >
+                            <RiArchiveLine size={16} color="black" />
+                          </div>
+                        ) : pointHistory.archiveDate !== null ? (
+                          <div
+                            className="p-2 rounded-full bg-black/10 cursor-pointer"
+                            onClick={() => unarchivePointHistory(pointHistory)}
+                          >
+                            <RiInboxUnarchiveLine size={16} color="black" />
+                          </div>
+                        ) : null}
+                      </div>
                     </div>
                     <div className="w-full flex flex-col items-start justify-center">
                       <p className="text-xs font-semibold w-full truncate">
