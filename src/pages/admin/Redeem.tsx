@@ -119,7 +119,7 @@ const Redeem = () => {
                   setRewardName(e.target.value);
                   setPage(1);
                 }}
-                className="w-full outline-none text-xs font-normal"
+                className="w-full outline-none text-xs font-normal bg-[#FCFCFC]"
                 placeholder="search rewards"
               />
             </div>
@@ -178,6 +178,7 @@ const Redeem = () => {
           <div className="w-full flex flex-col items-center justify-center space-y-4">
             {rewards.length > 0 ? (
               rewards.map((reward: any) => {
+                console.log(reward.image);
                 return (
                   <div
                     className="w-full flex flex-col items-center justify-center overflow-hidden rounded-xl bg-[#FCFCFC]"
