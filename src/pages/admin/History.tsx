@@ -216,7 +216,7 @@ const History = () => {
                 );
 
                 if (!reward) {
-                  return null;
+                  return <div>Shit</div>;
                 }
 
                 return (
@@ -395,8 +395,10 @@ const History = () => {
                       </div>
                     </div>
                     <div className="w-full flex flex-col items-start justify-center">
-                      <p className="text-xs font-semibold w-full truncate">
-                        {pointHistory.userInfo.personalInfo.firstName}
+                      <p className="text-xs font-semibold w-full truncate capitalize">
+                        {pointHistory.userInfo
+                          ? pointHistory.userInfo.personalInfo.firstName
+                          : "Non-mobile User"}
                       </p>
 
                       <p className="text-xs font-normal text-[#6E6E6E] uppercase w-full truncate">

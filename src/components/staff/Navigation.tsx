@@ -55,7 +55,7 @@ const Navigation = () => {
   }, [location.pathname]);
 
   return (
-    <div className="fixed w-full flex items-center justify-center px-4 font-DM z-10">
+    <div className="fixed w-full flex items-center justify-center px-4 font-DM z-20">
       <div className="w-full lg:w-3/6 flex items-center justify-between py-4">
         {/* logo */}
         <div

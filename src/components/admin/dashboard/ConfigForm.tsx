@@ -10,7 +10,7 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
   const [lat, setLat] = useState("");
   const [lon, setLon] = useState("");
   const [baseWeight, setBaseWeight] = useState("");
-  const [baseUnit, setBaseUnit] = useState("");
+  const [baseUnit, setBaseUnit] = useState("kg");
   const [equivalentInPoints, setEquivalentInPoints] = useState("");
   const [locationChanged, setLocationChanged] = useState(false);
   const [configId, setConfigId] = useState("");
@@ -19,6 +19,12 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (baseUnit === "") {
+      setBaseUnit("kg");
+    }
+  }, [baseUnit]);
 
   useEffect(() => {
     checkConfig();
@@ -178,6 +184,7 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
                   type="text"
                   className="text-xs font-normal outline-none bg-[#EDEDED] w-3/4"
                   value={locationName}
+                  placeholder="enter address"
                   onChange={(e) => {
                     setLocationName(e.target.value);
                     setLocationChanged(true);

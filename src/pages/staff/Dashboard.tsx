@@ -51,7 +51,7 @@ const CenterMap = ({
 const Dashboard = () => {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [centerMap, setCenterMap] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(13);
+  const [zoomLevel, setZoomLevel] = useState(16);
   const { checkConfig, config } = useConfig();
   const { queue, queueWebSocket } = useWebsocket();
 
@@ -104,7 +104,7 @@ const Dashboard = () => {
         <RiCompass3Line size={16} color="white" />
       </div>
 
-      <div className="w-full flex flex-row items-center justify-start lg:justify-center overflow-auto fixed bottom-0 left-0 p-4 z-10 gap-4 scrollbar-hide">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-start lg:justify-center overflow-auto fixed bottom-0 left-0 p-4 z-10 gap-4 scrollbar-hide">
         <div className="bg-white p-6 rounded-xl flex flex-col space-y-8 items-center justify-center min-w-[60vw] lg:min-w-[20vw] shadow-xl shadow-black/25">
           <div className="w-full flex flex-row items-center justify-start gap-2">
             <div className="p-2 rounded-full bg-black">
@@ -132,7 +132,9 @@ const Dashboard = () => {
           <div className="w-full flex p-2 rounded-lg bg-[#EDEDED] px-6 py-3">
             <p className="text-xs font-normal text-[#6E6E6E] capitalize">
               {config
-                ? `Latitude: ${config.defaultLocation.lat}, Longitude: ${config.defaultLocation.lon}`
+                ? `Latitude: ${config.defaultLocation.lat.toFixed(
+                    4
+                  )}, Longitude: ${config.defaultLocation.lon.toFixed(4)}`
                 : "Fetching location..."}
             </p>
           </div>

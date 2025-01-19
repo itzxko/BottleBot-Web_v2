@@ -4,6 +4,7 @@ import Notification from "../components/Notification";
 import axios from "axios";
 import { useAuthorization } from "../contexts/AuthorizationProvider";
 import { useNavigate } from "react-router-dom";
+import { RiShieldLine, RiUser4Line } from "react-icons/ri";
 
 const Login = () => {
   const { onLogout } = useAuthorization();
@@ -62,7 +63,7 @@ const Login = () => {
     <>
       <div className="w-full h-[100svh] flex flex-col items-center justify-center bg-[url('./assets/Home.jpg')] bg-cover bg-center font-DM">
         <div className="w-full h-full flex flex-row items-center justify-center bg-gradient-to-tr from-black/75 to-black/50 p-6">
-          <div className="w-5/6 lg:w-1/6 flex flex-col items-center justify-center p-6 rounded-xl bg-white space-y-6">
+          <div className="w-5/6 lg:w-1/6 flex flex-col items-center justify-center p-4 rounded-2xl bg-white gap-8">
             <div className="w-full flex flex-col items-center justify-center space-y-2">
               {/* logo */}
               <div className="w-full flex items-center justify-center">
@@ -77,12 +78,12 @@ const Login = () => {
               </div>
             </div>
             {/* inputs */}
-            <div className="w-full flex flex-col items-center justify-center space-y-4">
+            <div className="w-full flex flex-col items-center justify-center space-y-3">
               {/* username */}
-              <div className="w-full flex flex-col items-start justify-center space-y-2">
+              <div className="w-full flex flex-col items-start justify-center space-y-1">
                 <p className="text-xs font-semibold">Email</p>
-                <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-lg bg-[#EDEDED]">
-                  <i className="ri-user-4-line text-xs text-[#6E6E6E]"></i>
+                <div className="w-full flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
+                  <RiUser4Line size={18} />
                   <input
                     type="text"
                     className="text-xs font-normal outline-none w-full bg-[#EDEDED] "
@@ -93,10 +94,10 @@ const Login = () => {
                 </div>
               </div>
               {/* password */}
-              <div className="w-full flex flex-col items-start justify-center space-y-2">
+              <div className="w-full flex flex-col items-start justify-center space-y-1">
                 <p className="text-xs font-semibold">Password</p>
-                <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-lg bg-[#EDEDED]">
-                  <i className="ri-lock-2-line text-xs text-[#6E6E6E]"></i>
+                <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
+                  <RiShieldLine size={18} />
                   <input
                     type={pVisible ? "text" : "password"}
                     className="text-xs font-normal outline-none w-full bg-[#EDEDED] no-eye"
@@ -121,7 +122,7 @@ const Login = () => {
             </div>
             {/* button */}
             <div
-              className="w-full flex flex-row items-center justify-center py-2.5 bg-gradient-to-tr from-[#466600] to-[#699900] rounded-lg cursor-pointer"
+              className="w-full flex flex-row items-center justify-center py-3 bg-gradient-to-tr from-[#466600] to-[#699900] rounded-xl cursor-pointer"
               onClick={onLogin}
             >
               <p className="text-xs font-semibold text-white">Login</p>
