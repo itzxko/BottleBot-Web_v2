@@ -41,16 +41,24 @@ const Navigation = () => {
 
     if (location.pathname.includes("/staff/dashboard")) {
       setActiveRoute("dashboard");
+      document.title = "Dashboard";
     } else if (location.pathname.includes("/staff/monitor")) {
       setActiveRoute("monitor");
+      document.title = "Monitoring";
     } else if (location.pathname.includes("/staff/history")) {
       setActiveRoute("history");
+      document.title = "History";
     } else if (location.pathname.includes("/staff/users")) {
       setActiveRoute("users");
+      document.title = "Users";
     } else if (location.pathname.includes("/staff/redeem")) {
       setActiveRoute("redeem");
+      document.title = "Redeem";
     } else if (location.pathname.includes("/staff/profile")) {
       setActiveRoute("profile");
+      document.title = "Profile";
+    } else {
+      document.title = "BottleBot";
     }
   }, [location.pathname]);
 

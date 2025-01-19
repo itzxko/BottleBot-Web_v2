@@ -85,8 +85,7 @@ const Dashboard = () => {
     }
   };
 
-  // Use a fallback for `position` if it's `null`
-  const userLocation: [number, number] = position ?? [51.505, -0.09]; // Use default if null
+  const userLocation: [number, number] = position ?? [51.505, -0.09];
   const defaultLocation: [number, number] = config
     ? [config.defaultLocation.lat, config.defaultLocation.lon]
     : [51.505, -0.09];
