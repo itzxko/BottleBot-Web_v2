@@ -152,7 +152,7 @@ const ViewForm = ({
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start p-4 overflow-y-auto font-DM">
+      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start py-8 px-4 overflow-y-auto font-DM z-20">
         <div className="w-full min-h-full flex flex-col items-center justify-center">
           {/* card */}
           <div className="w-full lg:w-2/6 bg-[#FCFCFC] p-6 rounded-xl">

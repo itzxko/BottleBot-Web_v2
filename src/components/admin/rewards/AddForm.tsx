@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Notification from "../../Notification";
 import { RiAddLine, RiArrowDownSLine } from "react-icons/ri";
 
@@ -20,7 +20,6 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const [vPassword, setVPassword] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -67,7 +66,7 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start p-4 overflow-y-auto font-DM">
+      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start p-4 overflow-y-auto font-DM z-20">
         <div className="w-full min-h-full flex flex-col items-center justify-center">
           {/* card */}
           <div className="w-full lg:w-2/6 bg-[#FCFCFC] p-6 rounded-xl">

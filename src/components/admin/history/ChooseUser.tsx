@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useCitizens } from "../../../contexts/CitizensProvider";
-import { RiArrowRightSLine, RiQrCodeLine, RiSearch2Line } from "react-icons/ri";
+import {
+  RiArrowRightSLine,
+  RiQrCodeLine,
+  RiSearch2Line,
+  RiXrpLine,
+} from "react-icons/ri";
 import Man from "../../../assets/Man.jpg";
 import axios from "axios";
 import Notification from "../../Notification";
@@ -119,7 +124,7 @@ const ChooseUser = ({
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start p-4 overflow-y-auto font-DM">
+      <div className="fixed top-0 left-0 right-0 bottom-0 w-full min-h-[100svh] bg-black/50 flex items-start justify-start p-4 overflow-y-auto font-DM z-20">
         <div className="w-full min-h-full flex flex-col items-center justify-center">
           {/* card */}
           <div className="w-full lg:w-2/6 bg-[#FCFCFC] p-6 rounded-xl flex flex-col space-y-4">
@@ -157,43 +162,54 @@ const ChooseUser = ({
               />
             </div>
             <div className="w-full flex flex-col items-center justify-center space-y-4">
-              {citizens.map((citizen: any) => {
-                return (
-                  <div
-                    className="w-full flex flex-row items-center justify-between p-6 rounded-xl bg-[#EDEDED]"
-                    key={citizen._id}
-                  >
-                    <div className="w-3/4 flex flex-row items-center justify-start space-x-4">
-                      <img
-                        src={Man}
-                        alt=""
-                        className="w-[40px] h-[40px] rounded-full"
-                      />
-                      <div className="w-2/4 flex flex-col items-start justify-center ">
-                        <p className="text-xs font-semibold w-full truncate">{`${citizen.personalInfo.firstName} ${citizen.personalInfo.middleName} ${citizen.personalInfo.lastName}`}</p>
-                        <p className="text-xs font-normal text-[#6E6E6E] uppercase w-full truncate">
-                          #{citizen._id}
-                        </p>
-                        <p className="text-xs font-normal text-[#6E6E6E]">
-                          Points: {citizenPoints[citizen._id] || 0}
-                        </p>
+              {citizens.length > 0 ? (
+                citizens.map((citizen: any) => {
+                  return (
+                    <div
+                      className="w-full flex flex-row items-center justify-between p-6 rounded-xl bg-[#EDEDED]"
+                      key={citizen._id}
+                    >
+                      <div className="w-3/4 flex flex-row items-center justify-start space-x-4">
+                        <img
+                          src={Man}
+                          alt=""
+                          className="w-[40px] h-[40px] rounded-full"
+                        />
+                        <div className="w-2/4 flex flex-col items-start justify-center ">
+                          <p className="text-xs font-semibold w-full truncate">{`${citizen.personalInfo.firstName} ${citizen.personalInfo.middleName} ${citizen.personalInfo.lastName}`}</p>
+                          <p className="text-xs font-normal text-[#6E6E6E] uppercase w-full truncate">
+                            #{citizen._id}
+                          </p>
+                          <p className="text-xs font-normal text-[#6E6E6E]">
+                            Points: {citizenPoints[citizen._id] || 0}
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        className="p-2 rounded-full bg-gradient-to-tr from-[#466600] to-[#699900] cursor-pointer"
+                        onClick={() => {
+                          if (historyId === null) {
+                            redeemReward(citizen._id);
+                          } else if (historyId !== null) {
+                            updateHistory(citizen._id);
+                          }
+                        }}
+                      >
+                        <RiArrowRightSLine size={16} color="white" />
                       </div>
                     </div>
-                    <div
-                      className="p-2 rounded-full bg-gradient-to-tr from-[#466600] to-[#699900] cursor-pointer"
-                      onClick={() => {
-                        if (historyId === null) {
-                          redeemReward(citizen._id);
-                        } else if (historyId !== null) {
-                          updateHistory(citizen._id);
-                        }
-                      }}
-                    >
-                      <RiArrowRightSLine size={16} color="white" />
-                    </div>
+                  );
+                })
+              ) : (
+                <div className="min-h-[40svh] p-6 w-full flex flex-col items-center justify-center space-y-4">
+                  <div className="p-3 rounded-full bg-gradient-to-tr from-[#466600] to-[#699900]">
+                    <RiXrpLine size={22} color="white" />
                   </div>
-                );
-              })}
+                  <p className="text-xs font-normal capitalize">
+                    No Users Found
+                  </p>
+                </div>
+              )}
             </div>
             <div className="flex flex-row items-center justify-center space-x-4 py-6">
               {Array.from({ length: pages }, (_, index) => index + 1)
