@@ -1,14 +1,16 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
+import { useUrl } from "./UrlProvider";
 
 const ConfigContext = createContext<any>(null);
 
 export const ConfigProvider = ({ children }: any) => {
   const [config, setConfig] = useState<any | null>(null);
+  const { urlString } = useUrl();
 
   const checkConfig = async () => {
     try {
-      let url = `http://localhost:8080/api/configurations`;
+      let url = `${urlString}/api/configurations`;
 
       let response = await axios.get(url);
 

@@ -9,6 +9,7 @@ import {
 import Man from "../../../assets/Man.jpg";
 import axios from "axios";
 import Notification from "../../Notification";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const ChooseUser = ({
   points,
@@ -32,6 +33,7 @@ const ChooseUser = ({
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   useEffect(() => {
     getCitizens(userName, page, limit);
@@ -40,7 +42,7 @@ const ChooseUser = ({
   const redeemReward = async (userId: string) => {
     if (rewardId && userId) {
       try {
-        let url = `http://localhost:8080/api/history/claim`;
+        let url = `${urlString}/api/history/claim`;
 
         let response = await axios.post(url, {
           userId: userId,
@@ -67,7 +69,7 @@ const ChooseUser = ({
   const updateHistory = async (userId: string) => {
     if (rewardId && userId && historyId !== null) {
       try {
-        let url = `http://localhost:8080/api/history/claim/${historyId}`;
+        let url = `${urlString}/api/history/claim/${historyId}`;
 
         let response = await axios.put(url, {
           userId: userId,
@@ -97,7 +99,7 @@ const ChooseUser = ({
       const promises = citizens.map(async (citizen: any) => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/history/claim/points/${citizen._id}`
+            `${urlString}/api/history/claim/points/${citizen._id}`
           );
           return {
             id: citizen._id,

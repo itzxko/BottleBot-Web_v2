@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Notification from "../../Notification";
 import { RiAddLine, RiArrowDownSLine } from "react-icons/ri";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const EditForm = ({
   rewardId,
@@ -26,6 +27,7 @@ const EditForm = ({
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -38,7 +40,7 @@ const EditForm = ({
   const getReward = async () => {
     if (rewardId) {
       try {
-        let url = `http://localhost:8080/api/rewards/${rewardId}`;
+        let url = `${urlString}/api/rewards/${rewardId}`;
 
         let response = await axios.get(url);
 
@@ -48,7 +50,7 @@ const EditForm = ({
           setRewardName(response.data.reward.rewardName);
           setPointsRequired(response.data.reward.pointsRequired);
           setImagePreview(
-            `http://localhost:8080/api/images/${response.data.reward.image}`
+            `${urlString}/api/images/${response.data.reward.image}`
           );
           setDescription(response.data.reward.rewardDescription);
           setValidFrom(
@@ -94,7 +96,7 @@ const EditForm = ({
     }
 
     try {
-      let url = `http://localhost:8080/api/rewards/${rewardId}`;
+      let url = `${urlString}/api/rewards/${rewardId}`;
 
       let response = await axios.post(url, formData, {
         headers: {

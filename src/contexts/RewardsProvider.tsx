@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import { useUrl } from "./UrlProvider";
 
 const RewardsContext = createContext<any>(null);
 
@@ -8,6 +9,7 @@ export const RewardsProvider = ({ children }: any) => {
   const [pages, setPages] = useState(0);
   const [activeRewards, setActiveRewards] = useState([]);
   const [activePages, setActivePages] = useState(0);
+  const { urlString } = useUrl();
 
   const getRewards = async (
     rewardName: string,
@@ -18,7 +20,7 @@ export const RewardsProvider = ({ children }: any) => {
   ) => {
     if (page && limit && status) {
       try {
-        let url = `http://localhost:8080/api/rewards?rewardName=${rewardName}&category=${category}&page=${page}&limit=${limit}&status=${status}`;
+        let url = `${urlString}/api/rewards?rewardName=${rewardName}&category=${category}&page=${page}&limit=${limit}&status=${status}`;
 
         let response = await axios.get(url);
 
@@ -40,7 +42,7 @@ export const RewardsProvider = ({ children }: any) => {
   ) => {
     if (page && limit) {
       try {
-        let url = `http://localhost:8080/api/rewards?rewardName=${rewardName}&category=${category}&page=${page}&limit=${limit}&status=active`;
+        let url = `${urlString}/api/rewards?rewardName=${rewardName}&category=${category}&page=${page}&limit=${limit}&status=active`;
 
         let response = await axios.get(url);
 
@@ -56,7 +58,7 @@ export const RewardsProvider = ({ children }: any) => {
 
   const getAllRewards = async () => {
     try {
-      let url = `http://localhost:8080/api/rewards?page=1&limit=0`;
+      let url = `${urlString}/api/rewards?page=1&limit=0`;
 
       let response = await axios.get(url);
 

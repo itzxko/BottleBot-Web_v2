@@ -3,6 +3,7 @@ import { RiCloudWindyLine, RiRefreshLine, RiSearch2Line } from "react-icons/ri";
 import { useConfig } from "../../../contexts/ConfigProvider";
 import axios from "axios";
 import Notification from "../../Notification";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const ConfigForm = ({ onClose }: { onClose: () => void }) => {
   const { config, checkConfig } = useConfig();
@@ -19,6 +20,7 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   useEffect(() => {
     if (baseUnit === "") {
@@ -94,7 +96,7 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
   const addConfig = async () => {
     if (locationChanged === false) {
       try {
-        let url = `http://localhost:8080/api/configurations`;
+        let url = `${urlString}/api/configurations`;
 
         let response = await axios.post(url, {
           defaultLocation: {
@@ -130,7 +132,7 @@ const ConfigForm = ({ onClose }: { onClose: () => void }) => {
     if (locationChanged === false) {
       if (configId) {
         try {
-          let url = `http://localhost:8080/api/configurations/${configId}`;
+          let url = `${urlString}/api/configurations/${configId}`;
 
           let response = await axios.put(url, {
             defaultLocation: {

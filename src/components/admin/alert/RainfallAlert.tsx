@@ -1,16 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import Notification from "../../Notification";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const RainfallAlert = ({ onClose }: { onClose: () => void }) => {
   //notifs
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   const returntoDefault = async () => {
     try {
-      let url = `http://localhost:8080/api/queue`;
+      let url = `${urlString}/api/queue`;
 
       let response = await axios.post(url, {
         returnToDefault: "true",

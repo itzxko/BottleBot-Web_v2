@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import { useUrl } from "./UrlProvider";
 
 const UsersContext = createContext<any>(null);
 
 export const UsersProvider = ({ children }: any) => {
   const [users, setUsers] = useState([]);
   const [pages, setPages] = useState(0);
+  const { urlString } = useUrl();
 
   const getUsers = async (
     userName: string,
@@ -15,7 +17,7 @@ export const UsersProvider = ({ children }: any) => {
   ) => {
     if (page && limit && status) {
       try {
-        let url = `http://localhost:8080/api/users?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
+        let url = `${urlString}/api/users?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
 
         let response = await axios.get(url);
 

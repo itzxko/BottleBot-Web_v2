@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRewards } from "../../../contexts/RewardsProvider";
 import { RiArrowRightSLine, RiXrpLine } from "react-icons/ri";
 import ChooseUser from "./ChooseUser";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const ChooseReward = ({
   historyId,
@@ -20,6 +21,7 @@ const ChooseReward = ({
   const [rewardId, setRewardId] = useState("");
   const [points, setPoints] = useState("");
   const [userForm, setUserForm] = useState(false);
+  const { urlString } = useUrl();
 
   useEffect(() => {
     getActiveRewards(rewardSearch, filter, page, limit);
@@ -106,7 +108,7 @@ const ChooseReward = ({
                       <div
                         className={`w-full flex flex-row bg-cover bg-center items-start justify-between space-x-4 h-[220px]`}
                         style={{
-                          backgroundImage: `url(http://localhost:8080/api/images/${reward.image})`,
+                          backgroundImage: `url(${urlString}/api/images/${reward.image})`,
                         }}
                       >
                         <div className="w-full h-full flex items-start justify-center bg-gradient-to-tr from-black/25 to-black/75 p-6"></div>

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthorizationProvider } from "./contexts/AuthorizationProvider";
 import Login from "./pages/Login";
+import { UrlProvider } from "./contexts/UrlProvider";
 
 // admin
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -27,44 +28,64 @@ import { ConfigProvider } from "./contexts/ConfigProvider";
 function App() {
   return (
     <>
-      <AuthorizationProvider>
-        <UsersProvider>
-          <RewardsProvider>
-            <CitizensProvider>
-              <HistoryProvider>
-                <WebsocketProvider>
-                  <ConfigProvider>
-                    <Routes>
-                      <Route path="/" element={<Login />} />
-                      {/* admin */}
-                      <Route
-                        path="/admin/dashboard"
-                        element={<AdminDashboard />}
-                      />
-                      <Route path="/admin/monitor" element={<AdminMonitor />} />
-                      <Route path="/admin/profile" element={<AdminProfile />} />
-                      <Route path="/admin/users" element={<AdminUsers />} />
-                      <Route path="/admin/redeem" element={<AdminRedeem />} />
-                      <Route path="/admin/history" element={<AdminHistory />} />
+      <UrlProvider>
+        <AuthorizationProvider>
+          <UsersProvider>
+            <RewardsProvider>
+              <CitizensProvider>
+                <HistoryProvider>
+                  <WebsocketProvider>
+                    <ConfigProvider>
+                      <Routes>
+                        <Route path="/" element={<Login />} />
+                        {/* admin */}
+                        <Route
+                          path="/admin/dashboard"
+                          element={<AdminDashboard />}
+                        />
+                        <Route
+                          path="/admin/monitor"
+                          element={<AdminMonitor />}
+                        />
+                        <Route
+                          path="/admin/profile"
+                          element={<AdminProfile />}
+                        />
+                        <Route path="/admin/users" element={<AdminUsers />} />
+                        <Route path="/admin/redeem" element={<AdminRedeem />} />
+                        <Route
+                          path="/admin/history"
+                          element={<AdminHistory />}
+                        />
 
-                      {/* staff */}
-                      <Route
-                        path="/staff/dashboard"
-                        element={<StaffDashboard />}
-                      />
-                      <Route path="/staff/monitor" element={<StaffMonitor />} />
-                      <Route path="/staff/redeem" element={<StaffRedeem />} />
-                      <Route path="/staff/history" element={<StaffHistory />} />
-                      <Route path="/staff/profile" element={<StaffProfile />} />
-                      <Route path="/staff/users" element={<StaffUsers />} />
-                    </Routes>
-                  </ConfigProvider>
-                </WebsocketProvider>
-              </HistoryProvider>
-            </CitizensProvider>
-          </RewardsProvider>
-        </UsersProvider>
-      </AuthorizationProvider>
+                        {/* staff */}
+                        <Route
+                          path="/staff/dashboard"
+                          element={<StaffDashboard />}
+                        />
+                        <Route
+                          path="/staff/monitor"
+                          element={<StaffMonitor />}
+                        />
+                        <Route path="/staff/redeem" element={<StaffRedeem />} />
+                        <Route
+                          path="/staff/history"
+                          element={<StaffHistory />}
+                        />
+                        <Route
+                          path="/staff/profile"
+                          element={<StaffProfile />}
+                        />
+                        <Route path="/staff/users" element={<StaffUsers />} />
+                      </Routes>
+                    </ConfigProvider>
+                  </WebsocketProvider>
+                </HistoryProvider>
+              </CitizensProvider>
+            </RewardsProvider>
+          </UsersProvider>
+        </AuthorizationProvider>
+      </UrlProvider>
     </>
   );
 }

@@ -16,6 +16,7 @@ import Notification from "../../components/Notification";
 import AddForm from "../../components/admin/users/AddForm";
 import EditForm from "../../components/admin/users/EditForm";
 import ViewForm from "../../components/staff/users/ViewForm";
+import { useUrl } from "../../contexts/UrlProvider";
 
 const Users = () => {
   const { users, getUsers, pages } = useUsers();
@@ -31,6 +32,7 @@ const Users = () => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   useEffect(() => {
     getUsers(userName, page, limit, status);
@@ -48,7 +50,7 @@ const Users = () => {
   const archiveUser = async (userId: string) => {
     if (userId) {
       try {
-        let url = `http://localhost:8080/api/users/${userId}`;
+        let url = `${urlString}/api/users/${userId}`;
 
         let response = await axios.delete(url);
 
@@ -69,7 +71,7 @@ const Users = () => {
   const unarchiveUser = async (user: any) => {
     if (user) {
       try {
-        let url = `http://localhost:8080/api/users/${user._id}`;
+        let url = `${urlString}/api/users/${user._id}`;
 
         let response = await axios.put(url, {
           archiveDate: null,

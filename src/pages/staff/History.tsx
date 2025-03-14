@@ -15,6 +15,7 @@ import axios from "axios";
 import Notification from "../../components/Notification";
 import ChooseUser from "../../components/admin/history/ChooseUser";
 import ChooseReward from "../../components/admin/history/ChooseReward";
+import { useUrl } from "../../contexts/UrlProvider";
 
 const History = () => {
   const {
@@ -40,6 +41,7 @@ const History = () => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   useEffect(() => {
     getAllRewards();
@@ -69,7 +71,7 @@ const History = () => {
   const archiveRewardHistory = async (historyId: string) => {
     if (historyId) {
       try {
-        let url = `http://localhost:8080/api/history/claim/${historyId}`;
+        let url = `${urlString}/api/history/claim/${historyId}`;
 
         let response = await axios.delete(url);
 
@@ -90,7 +92,7 @@ const History = () => {
   const archivePointHistory = async (historyId: string) => {
     if (historyId) {
       try {
-        let url = `http://localhost:8080/api/history/dispose/${historyId}`;
+        let url = `${urlString}/api/history/dispose/${historyId}`;
 
         let response = await axios.delete(url);
 
@@ -111,7 +113,7 @@ const History = () => {
   const unarchiveRewardHistory = async (rewardHistory: any) => {
     if (rewardHistory) {
       try {
-        let url = `http://localhost:8080/api/history/claim/${rewardHistory._id}`;
+        let url = `${urlString}/api/history/claim/${rewardHistory._id}`;
 
         let response = await axios.put(url, {
           archiveDate: null,
@@ -137,7 +139,7 @@ const History = () => {
   const unarchivePointHistory = async (pointHistory: any) => {
     if (pointHistory) {
       try {
-        let url = `http://localhost:8080/api/history/dispose/${pointHistory._id}`;
+        let url = `${urlString}/api/history/dispose/${pointHistory._id}`;
 
         let response = await axios.put(url, {
           userId: pointHistory.userId,

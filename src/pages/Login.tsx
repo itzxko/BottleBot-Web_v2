@@ -5,10 +5,12 @@ import axios from "axios";
 import { useAuthorization } from "../contexts/AuthorizationProvider";
 import { useNavigate } from "react-router-dom";
 import { RiShieldLine, RiUser4Line } from "react-icons/ri";
+import { useUrl } from "../contexts/UrlProvider";
 
 const Login = () => {
   const { onLogout } = useAuthorization();
   const navigate = useNavigate();
+  const { urlString } = useUrl();
 
   const [pVisible, setPVisible] = useState(false);
   const [password, setPassword] = useState("");
@@ -23,7 +25,7 @@ const Login = () => {
 
   const onLogin = async () => {
     try {
-      let url = `http://localhost:8080/api/auth/login`;
+      let url = `${urlString}/api/auth/login`;
 
       let response = await axios.post(url, {
         email: email,

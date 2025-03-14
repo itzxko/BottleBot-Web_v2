@@ -14,6 +14,7 @@ import EditForm from "../../components/admin/rewards/EditForm";
 import axios from "axios";
 import Notification from "../../components/Notification";
 import RedeemForm from "../../components/admin/rewards/RedeemForm";
+import { useUrl } from "../../contexts/UrlProvider";
 
 const Redeem = () => {
   const { rewards, getRewards, pages } = useRewards();
@@ -31,6 +32,7 @@ const Redeem = () => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   useEffect(() => {
     getRewards(rewardName, categoryName, page, limit, status);
@@ -48,7 +50,7 @@ const Redeem = () => {
   const archiveReward = async (rewardId: string) => {
     if (rewardId) {
       try {
-        let url = `http://localhost:8080/api/rewards/${rewardId}`;
+        let url = `${urlString}/api/rewards/${rewardId}`;
 
         let response = await axios.delete(url);
 
@@ -80,7 +82,7 @@ const Redeem = () => {
       formData.append("imageChanged", "false");
       formData.append("archiveDate", "");
       try {
-        let url = `http://localhost:8080/api/rewards/${reward._id}`;
+        let url = `${urlString}/api/rewards/${reward._id}`;
 
         let response = await axios.post(url, formData, {
           headers: {
@@ -186,7 +188,7 @@ const Redeem = () => {
                     <div
                       className={`w-full flex flex-row bg-cover bg-center items-start justify-between space-x-4 h-[220px]`}
                       style={{
-                        backgroundImage: `url(http://localhost:8080/api/images/${reward.image})`,
+                        backgroundImage: `url(${urlString}/api/images/${reward.image})`,
                       }}
                     >
                       <div className="w-full h-full flex items-start justify-center bg-gradient-to-tr from-black/25 to-black/75 p-6">

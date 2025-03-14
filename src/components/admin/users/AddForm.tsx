@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Notification from "../../Notification";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const AddForm = ({ onClose }: { onClose: () => void }) => {
   const [firstName, setFirstName] = useState("");
@@ -26,6 +27,7 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [vPassword, setVPassword] = useState(false);
+  const { urlString } = useUrl();
 
   const handleGenderToggle = () => {
     if (gender === "Male") {
@@ -57,7 +59,7 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
 
   const addUser = async () => {
     try {
-      let url = `http://localhost:8080/api/users/register`;
+      let url = `${urlString}/api/users/register`;
 
       let response = await axios.post(url, {
         personalInfo: {

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Notification from "../../Notification";
 import { RiAddLine, RiArrowDownSLine } from "react-icons/ri";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const AddForm = ({ onClose }: { onClose: () => void }) => {
   const [rewardName, setRewardName] = useState("");
@@ -20,6 +21,7 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const { urlString } = useUrl();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -44,7 +46,7 @@ const AddForm = ({ onClose }: { onClose: () => void }) => {
     }
 
     try {
-      let url = `http://localhost:8080/api/rewards/`;
+      let url = `${urlString}/api/rewards/`;
 
       let response = await axios.post(url, formData, {
         headers: {

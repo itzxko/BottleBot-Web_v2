@@ -3,6 +3,7 @@ import Navigation from "../../components/admin/Navigation";
 import { useEffect, useState } from "react";
 import Man from "../../assets/Man.jpg";
 import EditUser from "../../components/admin/profile/EditUser";
+import { useUrl } from "../../contexts/UrlProvider";
 
 interface user {
   _id: string;
@@ -69,6 +70,7 @@ const Profile = () => {
   const [user, setUser] = useState<user>(defaultUser);
   const [editForm, setEditForm] = useState(false);
   const [userId, setUserId] = useState("");
+  const { urlString } = useUrl();
 
   const getProfileInfo = async () => {
     const user = localStorage.getItem("user");
@@ -79,7 +81,7 @@ const Profile = () => {
       if (currentUser._id) {
         setUserId(currentUser._id);
         try {
-          let url = `http://localhost:8080/api/users/${currentUser._id}`;
+          let url = `${urlString}/api/users/${currentUser._id}`;
 
           let response = await axios.get(url);
 

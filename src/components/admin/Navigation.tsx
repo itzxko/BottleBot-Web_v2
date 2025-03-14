@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Bottle_Bot.png";
 import axios from "axios";
 import { useAuthorization } from "../../contexts/AuthorizationProvider";
+import { useUrl } from "../../contexts/UrlProvider";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Navigation = () => {
   const location = useLocation();
   const { onLogout } = useAuthorization();
   const [openNav, setOpenNav] = useState(false);
+  const { urlString } = useUrl();
 
   const getUser = async () => {
     try {
@@ -20,7 +22,7 @@ const Navigation = () => {
         const currentUser = JSON.parse(user);
 
         if (currentUser) {
-          let url = `http://localhost:8080/api/users/${currentUser._id}`;
+          let url = `${urlString}/api/users/${currentUser._id}`;
 
           let response = await axios.get(url);
 

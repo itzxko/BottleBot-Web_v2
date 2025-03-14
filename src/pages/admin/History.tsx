@@ -15,6 +15,7 @@ import axios from "axios";
 import Notification from "../../components/Notification";
 import ChooseUser from "../../components/admin/history/ChooseUser";
 import ChooseReward from "../../components/admin/history/ChooseReward";
+import { useUrl } from "../../contexts/UrlProvider";
 
 const History = () => {
   const {
@@ -35,6 +36,7 @@ const History = () => {
   const [limit, setLimit] = useState(4);
   const [rewardForm, setRewardForm] = useState(false);
   const [historyId, setHistoryId] = useState<string | null>(null);
+  const { urlString } = useUrl();
 
   //notif
   const [notif, setNotif] = useState(false);
@@ -69,7 +71,7 @@ const History = () => {
   const archiveRewardHistory = async (historyId: string) => {
     if (historyId) {
       try {
-        let url = `http://localhost:8080/api/history/claim/${historyId}`;
+        let url = `${urlString}/api/history/claim/${historyId}`;
 
         let response = await axios.delete(url);
 
@@ -90,7 +92,7 @@ const History = () => {
   const archivePointHistory = async (historyId: string) => {
     if (historyId) {
       try {
-        let url = `http://localhost:8080/api/history/dispose/${historyId}`;
+        let url = `${urlString}/api/history/dispose/${historyId}`;
 
         let response = await axios.delete(url);
 
@@ -111,7 +113,7 @@ const History = () => {
   const unarchiveRewardHistory = async (rewardHistory: any) => {
     if (rewardHistory) {
       try {
-        let url = `http://localhost:8080/api/history/claim/${rewardHistory._id}`;
+        let url = `${urlString}/api/history/claim/${rewardHistory._id}`;
 
         let response = await axios.put(url, {
           archiveDate: null,
@@ -137,7 +139,7 @@ const History = () => {
   const unarchivePointHistory = async (pointHistory: any) => {
     if (pointHistory) {
       try {
-        let url = `http://localhost:8080/api/history/dispose/${pointHistory._id}`;
+        let url = `${urlString}/api/history/dispose/${pointHistory._id}`;
 
         let response = await axios.put(url, {
           userId: pointHistory.userId,
@@ -226,7 +228,7 @@ const History = () => {
                   >
                     <div className="w-full flex flex-row items-start justify-between space-x-4">
                       <img
-                        src={`http://localhost:8080/api/images/${reward.image}`}
+                        src={`${urlString}/api/images/${reward.image}`}
                         alt=""
                         className="w-[80px] h-[80px] rounded-full"
                       />

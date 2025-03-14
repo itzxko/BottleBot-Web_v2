@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Notification from "../../Notification";
+import { useUrl } from "../../../contexts/UrlProvider";
 
 const EditUser = ({
   userId,
@@ -32,11 +33,12 @@ const EditUser = ({
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const [vPassword, setVPassword] = useState(false);
+  const { urlString } = useUrl();
 
   const getInfo = async () => {
     if (userId) {
       try {
-        let url = `http://localhost:8080/api/users/${userId}`;
+        let url = `${urlString}/api/users/${userId}`;
 
         let response = await axios.get(url);
 
@@ -72,7 +74,7 @@ const EditUser = ({
   const updateUser = async () => {
     if (userId) {
       try {
-        let url = `http://localhost:8080/api/users/${userId}`;
+        let url = `${urlString}/api/users/${userId}`;
 
         let response = await axios.put(url, {
           personalInfo: {

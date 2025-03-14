@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
+import { useUrl } from "./UrlProvider";
 
 const HistoryContext = createContext<any>(null);
 
@@ -8,6 +9,7 @@ export const HistoryProvider = ({ children }: any) => {
   const [pointsHistory, setPointsHistory] = useState([]);
   const [pointsPage, setPointsPage] = useState(0);
   const [rewardsPage, setRewardsPage] = useState(0);
+  const { urlString } = useUrl();
 
   const getRewardsHistory = async (
     userName: string,
@@ -17,7 +19,7 @@ export const HistoryProvider = ({ children }: any) => {
   ) => {
     if (page && limit && status) {
       try {
-        let url = `http://localhost:8080/api/history/claim?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
+        let url = `${urlString}/api/history/claim?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
 
         let response = await axios.get(url);
 
@@ -39,7 +41,7 @@ export const HistoryProvider = ({ children }: any) => {
   ) => {
     if (page && limit && status) {
       try {
-        let url = `http://localhost:8080/api/history/dispose?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
+        let url = `${urlString}/api/history/dispose?userName=${userName}&page=${page}&limit=${limit}&status=${status}`;
 
         let response = await axios.get(url);
 
