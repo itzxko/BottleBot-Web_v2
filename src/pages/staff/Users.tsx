@@ -32,7 +32,6 @@ const Users = () => {
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const { urlString } = useUrl();
 
   useEffect(() => {
     getUsers(userName, page, limit, status);
@@ -44,54 +43,6 @@ const Users = () => {
       setStatus("archived");
     } else if (status === "archived") {
       setStatus("active");
-    }
-  };
-
-  const archiveUser = async (userId: string) => {
-    if (userId) {
-      try {
-        let url = `${urlString}/api/users/${userId}`;
-
-        let response = await axios.delete(url);
-
-        if (response.data.success === true) {
-          setNotif(true);
-          setError(false);
-          setMessage(response.data.message);
-          getUsers(userName, page, limit, status);
-        }
-      } catch (error: any) {
-        setError(true);
-        setNotif(true);
-        setMessage(error.response.data.message);
-      }
-    }
-  };
-
-  const unarchiveUser = async (user: any) => {
-    if (user) {
-      try {
-        let url = `${urlString}/api/users/${user._id}`;
-
-        let response = await axios.put(url, {
-          archiveDate: null,
-          personalInfo: user.personalInfo,
-          contactInfo: user.contactInfo,
-          economicInfo: user.economicInfo,
-          credentials: user.credentials,
-        });
-
-        if (response.data.success === true) {
-          setNotif(true);
-          setError(false);
-          setMessage(response.data.message);
-          getUsers(userName, page, limit, status);
-        }
-      } catch (error: any) {
-        setNotif(true);
-        setError(true);
-        setMessage(error.response.data.message);
-      }
     }
   };
 

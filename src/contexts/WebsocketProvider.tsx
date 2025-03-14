@@ -6,7 +6,7 @@ export const WebsocketProvider = ({ children }: any) => {
   const [queue, setQueue] = useState([]);
 
   const queueWebSocket = () => {
-    const socket = new WebSocket(`ws://bottlebot.onrender.com/api/queue`);
+    const socket = new WebSocket(`wss://bottlebot.onrender.com/api/queue`);
 
     socket.onopen = () => {
       console.log("WebSocket connection opened");
