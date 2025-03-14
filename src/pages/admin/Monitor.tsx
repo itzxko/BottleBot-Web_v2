@@ -16,7 +16,8 @@ import RainfallAlert from "../../components/admin/alert/RainfallAlert";
 import Rainfall from "../../components/admin/monitor/Rainfall";
 
 const Monitor = () => {
-  const { queue, queueWebSocket } = useWebsocket();
+  const { queue, queueWebSocket, overflow, waterLevel, orientation } =
+    useWebsocket();
   const [rainyHours, setRainyHours] = useState<any[]>([]);
   const [todayRain, setTodayRain] = useState("");
   const [date, setDate] = useState("");
@@ -114,7 +115,9 @@ const Monitor = () => {
                 </div>
                 <p className="text-xs font-semibold">Overflow</p>
               </div>
-              <p className="text-xs font-normal">20%</p>
+              <p className="text-xs font-normal">
+                {overflow ? `${overflow}%` : "No Data"}
+              </p>
             </div>
             <div className="w-full flex flex-row space-x-4 justify-between items-center px-6 py-4 rounded-xl bg-[#FCFCFC]">
               <div className="flex flex-row items-center justify-center gap-2">
@@ -123,7 +126,9 @@ const Monitor = () => {
                 </div>
                 <p className="text-xs font-semibold">Water Level</p>
               </div>
-              <p className="text-xs font-normal">20%</p>
+              <p className="text-xs font-normal">
+                {waterLevel ? `${waterLevel}%` : "No Data"}
+              </p>
             </div>
             <div className="w-full flex flex-row space-x-4 justify-between items-center px-6 py-4 rounded-xl bg-[#FCFCFC]">
               <div className="flex flex-row items-center justify-center gap-2">
@@ -132,7 +137,9 @@ const Monitor = () => {
                 </div>
                 <p className="text-xs font-semibold">Orientation</p>
               </div>
-              <p className="text-xs font-normal">20%</p>
+              <p className="text-xs font-normal">
+                {orientation ? `${orientation}%` : "No Data"}
+              </p>
             </div>
             <div className="w-full flex flex-row space-x-4 justify-between items-center px-6 py-4 rounded-xl bg-[#FCFCFC]">
               <div className="flex flex-row items-center justify-center gap-2">

@@ -65,8 +65,8 @@ const Login = () => {
     <>
       <div className="w-full h-[100svh] flex flex-col items-center justify-center bg-[url('./assets/Home.jpg')] bg-cover bg-center font-DM">
         <div className="w-full h-full flex flex-row items-center justify-center bg-gradient-to-tr from-black/75 to-black/50 p-6">
-          <div className="w-5/6 lg:w-1/6 flex flex-col items-center justify-center p-4 rounded-2xl bg-white gap-8">
-            <div className="w-full flex flex-col items-center justify-center space-y-2">
+          <div className="w-5/6 lg:w-[320px] flex flex-col items-center justify-center p-6 rounded-2xl bg-white gap-12">
+            <div className="w-full flex flex-col items-center justify-center space-y-4">
               {/* logo */}
               <div className="w-full flex items-center justify-center">
                 <img src={Logo} alt="" className="h-[80px] w-[80px]" />
@@ -80,9 +80,9 @@ const Login = () => {
               </div>
             </div>
             {/* inputs */}
-            <div className="w-full flex flex-col items-center justify-center space-y-3">
+            <div className="w-full flex flex-col items-center justify-center space-y-8">
               {/* username */}
-              <div className="w-full flex flex-col items-start justify-center space-y-1">
+              <div className="w-full flex flex-col items-start justify-center space-y-2">
                 <p className="text-xs font-semibold">Email</p>
                 <div className="w-full flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
                   <RiUser4Line size={18} />
@@ -96,7 +96,7 @@ const Login = () => {
                 </div>
               </div>
               {/* password */}
-              <div className="w-full flex flex-col items-start justify-center space-y-1">
+              <div className="w-full flex flex-col items-start justify-center space-y-2">
                 <p className="text-xs font-semibold">Password</p>
                 <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
                   <RiShieldLine size={18} />

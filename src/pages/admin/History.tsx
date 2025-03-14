@@ -292,7 +292,9 @@ const History = () => {
                 <div className="p-3 rounded-full bg-gradient-to-tr from-[#466600] to-[#699900]">
                   <RiXrpLine size={22} color="white" />
                 </div>
-                <p className="text-xs font-normal capitalize">No Users Found</p>
+                <p className="text-xs font-normal capitalize">
+                  No Rewards History Found
+                </p>
               </div>
             )}
           </div>
@@ -425,7 +427,7 @@ const History = () => {
                   <RiXrpLine size={22} color="white" />
                 </div>
                 <p className="text-xs font-normal capitalize">
-                  No History Found
+                  No Points History Found
                 </p>
               </div>
             )}

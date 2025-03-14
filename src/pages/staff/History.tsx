@@ -228,7 +228,7 @@ const History = () => {
                   >
                     <div className="w-full flex flex-row items-start justify-between space-x-4">
                       <img
-                        src={`http://localhost:8080/api/images/${reward.image}`}
+                        src={`${urlString}/api/images/${reward.image}`}
                         alt=""
                         className="w-[80px] h-[80px] rounded-full"
                       />
@@ -273,7 +273,9 @@ const History = () => {
                 <div className="p-3 rounded-full bg-gradient-to-tr from-[#466600] to-[#699900]">
                   <RiXrpLine size={22} color="white" />
                 </div>
-                <p className="text-xs font-normal capitalize">No Users Found</p>
+                <p className="text-xs font-normal capitalize">
+                  No Rewards History Found
+                </p>
               </div>
             )}
           </div>
@@ -378,7 +380,7 @@ const History = () => {
                   <RiXrpLine size={22} color="white" />
                 </div>
                 <p className="text-xs font-normal capitalize">
-                  No History Found
+                  No Points History Found
                 </p>
               </div>
             )}

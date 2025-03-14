@@ -4,6 +4,12 @@ const WebsocketContext = createContext<any>(null);
 
 export const WebsocketProvider = ({ children }: any) => {
   const [queue, setQueue] = useState([]);
+  const [botLocation, setBotLocation] = useState(null);
+  const [overflow, setOverflow] = useState(null);
+  const [orientation, setOrientation] = useState(null);
+  const [waterLevel, setWaterLevel] = useState(null);
+  const [arrived, setArrived] = useState(false);
+  const [arrivedAt, setArrivedAt] = useState("");
 
   const queueWebSocket = () => {
     const socket = new WebSocket(`wss://bottlebot.onrender.com/api/queue`);
@@ -25,11 +31,27 @@ export const WebsocketProvider = ({ children }: any) => {
 
       if (response.success && response.realTimeType === "queue") {
         setQueue(response.data);
+      } else if (response.success && response.realTimeType === "botstate") {
+        setBotLocation(response.data.adminBotLocation);
+        setOverflow(response.data.overflowLevel);
+        setOrientation(response.data.orientation);
+        setWaterLevel(response.data.waterLevel);
+        setArrived(response.data.arrived);
+        setArrivedAt(response.data.arrivedAt);
       }
     };
   };
   return (
-    <WebsocketContext.Provider value={{ queue, queueWebSocket }}>
+    <WebsocketContext.Provider
+      value={{
+        queue,
+        queueWebSocket,
+        botLocation,
+        overflow,
+        waterLevel,
+        orientation,
+      }}
+    >
       {children}
     </WebsocketContext.Provider>
   );
