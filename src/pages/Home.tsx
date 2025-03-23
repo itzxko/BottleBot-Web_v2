@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center font-DM">
-      <Parallax speed={-20} className="w-full">
+      <Parallax speed={-16} className="w-full">
         <div className="h-[100svh] w-full bg-[url(assets/Bot.jpg)] bg-center bg-cover flex flex-col items-center justify-end p-4">
           <div className="fixed w-full top-0 left-0">
             <div className="w-full flex items-center justify-center">
@@ -84,9 +84,9 @@ const Home = () => {
         </div>
       </Parallax>
       <Parallax speed={10}>
-        <div className="w-full flex flex-col items-center justify-evenly p-4 ">
+        <div className="w-full flex flex-col items-center justify-evenly p-4 bg-transparent">
           <div className="w-full flex flex-col items-center justify-center bg-[#EDEDED] rounded-xl">
-            <div className="w-full lg:w-3/6 flex flex-col items-center justify-center bg-[#EDEDED] px-6 py-24 gap-6">
+            <div className="w-full lg:w-3/6 flex flex-col items-center justify-center bg-[#EDEDED] px-6 py-24 gap-6 rounded-xl">
               <div className="flex items-center justify-center px-4 py-2 rounded-full bg-gradient-to-t from-[#466600] to-[#699900]">
                 <p className="text-xs font-normal text-white">
                   About BottleBot
