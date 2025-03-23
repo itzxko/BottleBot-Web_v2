@@ -25,69 +25,78 @@ import { CitizensProvider } from "./contexts/CitizensProvider";
 import { HistoryProvider } from "./contexts/HistoryProvider";
 import { WebsocketProvider } from "./contexts/WebsocketProvider";
 import { ConfigProvider } from "./contexts/ConfigProvider";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 function App() {
   return (
     <>
-      <UrlProvider>
-        <AuthorizationProvider>
-          <UsersProvider>
-            <RewardsProvider>
-              <CitizensProvider>
-                <HistoryProvider>
-                  <WebsocketProvider>
-                    <ConfigProvider>
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
-                        {/* admin */}
-                        <Route
-                          path="/admin/dashboard"
-                          element={<AdminDashboard />}
-                        />
-                        <Route
-                          path="/admin/monitor"
-                          element={<AdminMonitor />}
-                        />
-                        <Route
-                          path="/admin/profile"
-                          element={<AdminProfile />}
-                        />
-                        <Route path="/admin/users" element={<AdminUsers />} />
-                        <Route path="/admin/redeem" element={<AdminRedeem />} />
-                        <Route
-                          path="/admin/history"
-                          element={<AdminHistory />}
-                        />
+      <ParallaxProvider>
+        <UrlProvider>
+          <AuthorizationProvider>
+            <UsersProvider>
+              <RewardsProvider>
+                <CitizensProvider>
+                  <HistoryProvider>
+                    <WebsocketProvider>
+                      <ConfigProvider>
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+                          <Route path="/login" element={<Login />} />
+                          {/* admin */}
+                          <Route
+                            path="/admin/dashboard"
+                            element={<AdminDashboard />}
+                          />
+                          <Route
+                            path="/admin/monitor"
+                            element={<AdminMonitor />}
+                          />
+                          <Route
+                            path="/admin/profile"
+                            element={<AdminProfile />}
+                          />
+                          <Route path="/admin/users" element={<AdminUsers />} />
+                          <Route
+                            path="/admin/redeem"
+                            element={<AdminRedeem />}
+                          />
+                          <Route
+                            path="/admin/history"
+                            element={<AdminHistory />}
+                          />
 
-                        {/* staff */}
-                        <Route
-                          path="/staff/dashboard"
-                          element={<StaffDashboard />}
-                        />
-                        <Route
-                          path="/staff/monitor"
-                          element={<StaffMonitor />}
-                        />
-                        <Route path="/staff/redeem" element={<StaffRedeem />} />
-                        <Route
-                          path="/staff/history"
-                          element={<StaffHistory />}
-                        />
-                        <Route
-                          path="/staff/profile"
-                          element={<StaffProfile />}
-                        />
-                        <Route path="/staff/users" element={<StaffUsers />} />
-                      </Routes>
-                    </ConfigProvider>
-                  </WebsocketProvider>
-                </HistoryProvider>
-              </CitizensProvider>
-            </RewardsProvider>
-          </UsersProvider>
-        </AuthorizationProvider>
-      </UrlProvider>
+                          {/* staff */}
+                          <Route
+                            path="/staff/dashboard"
+                            element={<StaffDashboard />}
+                          />
+                          <Route
+                            path="/staff/monitor"
+                            element={<StaffMonitor />}
+                          />
+                          <Route
+                            path="/staff/redeem"
+                            element={<StaffRedeem />}
+                          />
+                          <Route
+                            path="/staff/history"
+                            element={<StaffHistory />}
+                          />
+                          <Route
+                            path="/staff/profile"
+                            element={<StaffProfile />}
+                          />
+                          <Route path="/staff/users" element={<StaffUsers />} />
+                        </Routes>
+                      </ConfigProvider>
+                    </WebsocketProvider>
+                  </HistoryProvider>
+                </CitizensProvider>
+              </RewardsProvider>
+            </UsersProvider>
+          </AuthorizationProvider>
+        </UrlProvider>
+      </ParallaxProvider>
     </>
   );
 }
