@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthorizationProvider } from "./contexts/AuthorizationProvider";
 import Login from "./pages/Login";
 import { UrlProvider } from "./contexts/UrlProvider";
+import Home from "./pages/Home";
 
 // admin
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -37,7 +38,8 @@ function App() {
                   <WebsocketProvider>
                     <ConfigProvider>
                       <Routes>
-                        <Route path="/" element={<Login />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
                         {/* admin */}
                         <Route
                           path="/admin/dashboard"

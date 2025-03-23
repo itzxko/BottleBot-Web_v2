@@ -216,7 +216,7 @@ const Navigation = () => {
             >
               History
             </p>
-            <p className="text-xs font-normal">History</p>
+
             <p
               className="text-xs font-normal"
               onClick={() => navigate("/admin/users")}

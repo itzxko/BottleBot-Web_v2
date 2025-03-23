@@ -19,9 +19,9 @@ const Login = () => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
-  // useEffect(() => {
-  //   onLogout();
-  // }, []);
+  useEffect(() => {
+    document.title = "BottleBot | Login";
+  }, []);
 
   const onLogin = async () => {
     try {
@@ -84,7 +84,7 @@ const Login = () => {
               {/* username */}
               <div className="w-full flex flex-col items-start justify-center space-y-2">
                 <p className="text-xs font-semibold">Email</p>
-                <div className="w-full flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
+                <div className="w-full flex flex-row items-center justify-between gap-3 px-4 py-3 rounded-lg bg-[#EDEDED]">
                   <RiUser4Line size={18} />
                   <input
                     type="text"
@@ -98,7 +98,7 @@ const Login = () => {
               {/* password */}
               <div className="w-full flex flex-col items-start justify-center space-y-2">
                 <p className="text-xs font-semibold">Password</p>
-                <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-xl bg-[#EDEDED]">
+                <div className="w-full flex flex-row items-center justify-between space-x-3 px-4 py-3 rounded-lg bg-[#EDEDED]">
                   <RiShieldLine size={18} />
                   <input
                     type={pVisible ? "text" : "password"}
@@ -124,7 +124,7 @@ const Login = () => {
             </div>
             {/* button */}
             <div
-              className="w-full flex flex-row items-center justify-center py-3 bg-gradient-to-tr from-[#466600] to-[#699900] rounded-xl cursor-pointer"
+              className="w-full flex flex-row items-center justify-center py-3 bg-gradient-to-tr from-[#466600] to-[#699900] rounded-lg cursor-pointer"
               onClick={onLogin}
             >
               <p className="text-xs font-semibold text-white">Login</p>
