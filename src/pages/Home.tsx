@@ -16,6 +16,21 @@ const Home = () => {
     sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const driveLink =
+    "https://drive.google.com/uc?export=download&id=1ry4EjDcsLLiUTdQnx8Qke3izG8Zn_G-t"; // Replace with your file ID
+
+  const Home = () => {
+    return (
+      <a
+        href={driveLink}
+        download
+        className="px-4 py-2 rounded-xl flex items-center justify-center bg-gradient-to-t from-[#466600] to-[#699900] cursor-pointer"
+      >
+        <p className="text-xs font-normal text-white">Download App</p>
+      </a>
+    );
+  };
+
   return (
     <div className="w-full flex flex-col items-center justify-center font-DM">
       <div className="h-[100svh] w-full bg-[url(assets/Bot.jpg)] bg-center bg-cover flex flex-col items-center justify-end p-4">
@@ -54,7 +69,7 @@ const Home = () => {
         </div>
         <div className="w-full lg:w-3/6 p-12 flex flex-col items-center justify-center gap-4">
           <a
-            href="../../public/BottleBot.apk"
+            href={driveLink}
             download
             className="px-4 py-2 rounded-xl flex items-center justify-center bg-gradient-to-t from-[#466600] to-[#699900] cursor-pointer"
           >
