@@ -11,6 +11,7 @@ import AdminProfile from "./pages/admin/Profile";
 import AdminUsers from "./pages/admin/Users";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminHistory from "./pages/admin/History";
+import AdminReport from "./pages/admin/Reports";
 
 // staff
 import StaffDashboard from "./pages/staff/Dashboard";
@@ -26,6 +27,7 @@ import { HistoryProvider } from "./contexts/HistoryProvider";
 import { WebsocketProvider } from "./contexts/WebsocketProvider";
 import { ConfigProvider } from "./contexts/ConfigProvider";
 import { ParallaxProvider } from "react-scroll-parallax";
+import { ReportsProvider } from "./contexts/ReportsProvider";
 
 function App() {
   return (
@@ -39,55 +41,67 @@ function App() {
                   <HistoryProvider>
                     <WebsocketProvider>
                       <ConfigProvider>
-                        <Routes>
-                          <Route path="/" element={<Home />} />
-                          <Route path="/login" element={<Login />} />
-                          {/* admin */}
-                          <Route
-                            path="/admin/dashboard"
-                            element={<AdminDashboard />}
-                          />
-                          <Route
-                            path="/admin/monitor"
-                            element={<AdminMonitor />}
-                          />
-                          <Route
-                            path="/admin/profile"
-                            element={<AdminProfile />}
-                          />
-                          <Route path="/admin/users" element={<AdminUsers />} />
-                          <Route
-                            path="/admin/redeem"
-                            element={<AdminRedeem />}
-                          />
-                          <Route
-                            path="/admin/history"
-                            element={<AdminHistory />}
-                          />
+                        <ReportsProvider>
+                          <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/login" element={<Login />} />
+                            {/* admin */}
+                            <Route
+                              path="/admin/dashboard"
+                              element={<AdminDashboard />}
+                            />
+                            <Route
+                              path="/admin/monitor"
+                              element={<AdminMonitor />}
+                            />
+                            <Route
+                              path="/admin/profile"
+                              element={<AdminProfile />}
+                            />
+                            <Route
+                              path="/admin/users"
+                              element={<AdminUsers />}
+                            />
+                            <Route
+                              path="/admin/redeem"
+                              element={<AdminRedeem />}
+                            />
+                            <Route
+                              path="/admin/history"
+                              element={<AdminHistory />}
+                            />
+                            <Route
+                              path="/admin/report"
+                              element={<AdminReport />}
+                            />
 
-                          {/* staff */}
-                          <Route
-                            path="/staff/dashboard"
-                            element={<StaffDashboard />}
-                          />
-                          <Route
-                            path="/staff/monitor"
-                            element={<StaffMonitor />}
-                          />
-                          <Route
-                            path="/staff/redeem"
-                            element={<StaffRedeem />}
-                          />
-                          <Route
-                            path="/staff/history"
-                            element={<StaffHistory />}
-                          />
-                          <Route
-                            path="/staff/profile"
-                            element={<StaffProfile />}
-                          />
-                          <Route path="/staff/users" element={<StaffUsers />} />
-                        </Routes>
+                            {/* staff */}
+                            <Route
+                              path="/staff/dashboard"
+                              element={<StaffDashboard />}
+                            />
+                            <Route
+                              path="/staff/monitor"
+                              element={<StaffMonitor />}
+                            />
+                            <Route
+                              path="/staff/redeem"
+                              element={<StaffRedeem />}
+                            />
+                            <Route
+                              path="/staff/history"
+                              element={<StaffHistory />}
+                            />
+                            <Route
+                              path="/staff/profile"
+                              element={<StaffProfile />}
+                            />
+                            <Route
+                              path="/staff/users"
+                              element={<StaffUsers />}
+                            />
+                          </Routes>
+                        </ReportsProvider>
                       </ConfigProvider>
                     </WebsocketProvider>
                   </HistoryProvider>

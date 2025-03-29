@@ -16,13 +16,14 @@ import RainfallAlert from "../../components/admin/alert/RainfallAlert";
 import Rainfall from "../../components/admin/monitor/Rainfall";
 
 const Monitor = () => {
-  const { queue, queueWebSocket, overflow, waterLevel, orientation } =
+  const { queue, queueWebSocket, overflow, waterLevel, orientation, battery } =
     useWebsocket();
   const [rainyHours, setRainyHours] = useState<any[]>([]);
   const [todayRain, setTodayRain] = useState("");
   const [date, setDate] = useState("");
   const [rainfallAlert, setRainfallAlert] = useState(false);
   const [rainfallForm, setRainfallForm] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const fetchAndFilterRainyHours = async () => {
     const apiKey = "PQSRXB9VVDCDL87R3T6ZHPE83";
@@ -57,7 +58,21 @@ const Monitor = () => {
 
   useEffect(() => {
     checkCurrentTime();
-  }, [rainyHours]);
+
+    if (overflow > 80) {
+      setRainfallAlert(true);
+      setAlertMessage("Bot Capacity at Critical Level!");
+    } else if (orientation > 0) {
+      setRainfallAlert(true);
+      setAlertMessage("Bot is Tilted");
+    } else if (battery < 30) {
+      setRainfallAlert(true);
+      setAlertMessage("Bot Power Supply Running Low!");
+    } else if (waterLevel > 80) {
+      setRainfallAlert(true);
+      setAlertMessage("Bot is Sinking!");
+    }
+  }, [rainyHours, overflow, orientation, battery]);
 
   const checkCurrentTime = () => {
     const currentTime = new Date();
@@ -73,8 +88,20 @@ const Monitor = () => {
       return false;
     });
 
-    if (matchFound) {
-      setRainfallAlert(true);
+    if (overflow > 80 || orientation > 0 || waterLevel > 80) {
+      if (matchFound) {
+        setRainfallAlert(true);
+        setAlertMessage("High Rainfall Probability Detected!");
+      } else if (overflow > 80) {
+        setRainfallAlert(true);
+        setAlertMessage("Bot Capacity Running Low!");
+      } else if (orientation > 0) {
+        setRainfallAlert(true);
+        setAlertMessage("Bot is Tilted!");
+      } else if (waterLevel > 80) {
+        setRainfallAlert(true);
+        setAlertMessage("High Water Level Detected!");
+      }
     }
   };
 
@@ -210,7 +237,10 @@ const Monitor = () => {
         </div>
       </div>
       {rainfallAlert && (
-        <RainfallAlert onClose={() => setRainfallAlert(false)} />
+        <RainfallAlert
+          alert={alertMessage}
+          onClose={() => setRainfallAlert(false)}
+        />
       )}
       {rainfallForm && (
         <Rainfall

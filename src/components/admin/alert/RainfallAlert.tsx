@@ -3,7 +3,13 @@ import { useState } from "react";
 import Notification from "../../Notification";
 import { useUrl } from "../../../contexts/UrlProvider";
 
-const RainfallAlert = ({ onClose }: { onClose: () => void }) => {
+const RainfallAlert = ({
+  alert,
+  onClose,
+}: {
+  alert: string;
+  onClose: () => void;
+}) => {
   //notifs
   const [notif, setNotif] = useState(false);
   const [error, setError] = useState(false);
@@ -45,9 +51,7 @@ const RainfallAlert = ({ onClose }: { onClose: () => void }) => {
             <div className="px-3 py-2 rounded-full flex items-center justify-center bg-gradient-to-tr from-[#466600] to-[#699900]">
               <i className="ri-notification-4-line text-xl text-white"></i>
             </div>
-            <p className="text-xs font-normal text-center">
-              High Rainfall Probability Detected
-            </p>
+            <p className="text-xs font-normal text-center">{alert}</p>
             <div
               className="flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-tr from-[#466600] to-[#699900] cursor-pointer"
               onClick={() => returntoDefault()}

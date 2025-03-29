@@ -26,7 +26,7 @@ const History = () => {
     getPointsHistory,
     pointsPage,
   } = useHistory();
-  const { getAllRewards, rewards } = useRewards();
+  const { getAllRewards, allRewards } = useRewards();
   const [rewardsCurrentPage, setRewardsCurrentPage] = useState(1);
   const [pointsCurrentPage, setPointsCurrentPage] = useState(1);
   const [rewardSearch, setRewardSearch] = useState("");
@@ -213,7 +213,7 @@ const History = () => {
           <div className="w-full flex flex-col items-center justify-center space-y-2">
             {rewardsHistory.length > 0 ? (
               rewardsHistory.map((rewardHistory: any) => {
-                const reward = rewards.find(
+                const reward = allRewards.find(
                   (rewards: any) => rewardHistory.rewardId === rewards._id
                 );
 

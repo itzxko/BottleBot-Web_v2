@@ -59,6 +59,9 @@ const Navigation = () => {
     } else if (location.pathname.includes("/admin/profile")) {
       setActiveRoute("profile");
       document.title = "Profile";
+    } else if (location.pathname.includes("/admin/report")) {
+      setActiveRoute("report");
+      document.title = "Report";
     } else {
       document.title = "BottleBot";
     }
@@ -142,6 +145,24 @@ const Navigation = () => {
                 <i className="ri-calendar-line text-md text-[#6E6E6E]"></i>
               </div>
             )}
+            {activeRoute === "report" ? (
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  navigate("/admin/report");
+                  setActiveRoute("report");
+                }}
+              >
+                <i className="ri-folder-chart-fill text-md text-[#050301]"></i>
+              </div>
+            ) : (
+              <div
+                className="cursor-pointer"
+                onClick={() => navigate("/admin/report")}
+              >
+                <i className="ri-folder-chart-line text-md text-[#6E6E6E]"></i>
+              </div>
+            )}
             {activeRoute === "users" ? (
               <div
                 className="cursor-pointer"
@@ -215,6 +236,12 @@ const Navigation = () => {
               onClick={() => navigate("/admin/history")}
             >
               History
+            </p>
+            <p
+              className="text-xs font-normal"
+              onClick={() => navigate("/admin/report")}
+            >
+              Report
             </p>
 
             <p

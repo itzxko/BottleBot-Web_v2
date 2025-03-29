@@ -10,6 +10,7 @@ export const RewardsProvider = ({ children }: any) => {
   const [activeRewards, setActiveRewards] = useState([]);
   const [activePages, setActivePages] = useState(0);
   const { urlString } = useUrl();
+  const [allRewards, setAllRewards] = useState([]);
 
   const getRewards = async (
     rewardName: string,
@@ -63,7 +64,7 @@ export const RewardsProvider = ({ children }: any) => {
       let response = await axios.get(url);
 
       if (response.data.success === true) {
-        setRewards(response.data.rewards);
+        setAllRewards(response.data.rewards);
       }
     } catch (error: any) {
       console.log(error);
@@ -97,6 +98,7 @@ export const RewardsProvider = ({ children }: any) => {
         getAllRewards,
         activeRewards,
         activePages,
+        allRewards,
       }}
     >
       {children}

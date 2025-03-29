@@ -8,6 +8,21 @@ export const UsersProvider = ({ children }: any) => {
   const [users, setUsers] = useState([]);
   const [pages, setPages] = useState(0);
   const { urlString } = useUrl();
+  const [allUsers, setAllUsers] = useState([]);
+
+  const getAllUsers = async () => {
+    try {
+      let url = `${urlString}/api/users?limit=0`;
+
+      let response = await axios.get(url);
+
+      if (response.data.success === true) {
+        setAllUsers(response.data.users);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   const getUsers = async (
     userName: string,
@@ -32,7 +47,9 @@ export const UsersProvider = ({ children }: any) => {
   };
 
   return (
-    <UsersContext.Provider value={{ users, getUsers, pages }}>
+    <UsersContext.Provider
+      value={{ users, getUsers, pages, getAllUsers, allUsers }}
+    >
       {children}
     </UsersContext.Provider>
   );
