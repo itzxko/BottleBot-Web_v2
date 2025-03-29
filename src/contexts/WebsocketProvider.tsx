@@ -10,7 +10,7 @@ export const WebsocketProvider = ({ children }: any) => {
   const [waterLevel, setWaterLevel] = useState(null);
   const [arrived, setArrived] = useState(false);
   const [arrivedAt, setArrivedAt] = useState("");
-  const [battery, setBattery] = useState("");
+  const [battery, setBattery] = useState(null);
 
   const queueWebSocket = () => {
     const socket = new WebSocket(`wss://bottlebot.onrender.com/api/queue`);

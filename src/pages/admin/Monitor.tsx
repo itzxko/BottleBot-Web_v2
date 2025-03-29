@@ -65,7 +65,7 @@ const Monitor = () => {
     } else if (orientation > 0) {
       setRainfallAlert(true);
       setAlertMessage("Bot is Tilted");
-    } else if (battery < 30) {
+    } else if (battery && battery <= 30) {
       setRainfallAlert(true);
       setAlertMessage("Bot Power Supply Running Low!");
     } else if (waterLevel > 80) {
@@ -76,11 +76,12 @@ const Monitor = () => {
 
   const checkCurrentTime = () => {
     const currentTime = new Date();
-    const currentHour = 19;
+    const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
 
     const matchFound = rainyHours.some((rainyHour: any) => {
       const rainyHourValue = convertToHour(rainyHour.datetime);
+      console.log(currentHour);
 
       if (currentHour === rainyHourValue) {
         return currentMinute >= 0 && currentMinute < 60;
